@@ -1,0 +1,58 @@
+!*************************************** 
+!tailsitter_vtol_advanced input dataset 
+!*************************************** 
+tailsitter_vtol_advanced 
+!Mach 
+0.0 
+!IYsym    IZsym    Zsym 
+0     0     0 
+!Sref    Cref    Bref 
+0.0588     0.05446966188050024     1.0795 
+!Xref    Yref    Zref 
+0.0048     0.0      0.0 
+#--------------------------------------------------
+SURFACE 
+right_elevon 
+!Nchordwise     Cspace      Nspanwise       Sspace 
+4       1.0        16     -2.0 
+ANGLE 
+0 
+TRANSLATE 
+0.0    0.0    0.0 
+SECTION 
+!Xle    Yle    Zle     Chord   Ainc  Nspanwise  Sspace 
+0.0048   0.0    0.0    0.1823    0     8    -2.0 
+NACA 
+2412 
+CONTROL 
+aileron  1.0  0.0  0.0  0.0  0.0  -1 
+SECTION 
+!Xle    Yle    Zle     Chord   Ainc  Nspanwise  Sspace 
+-0.1563   0.5398    0.0    0.2477    0     8    -2.0 
+NACA 
+2412 
+CONTROL 
+aileron  1.0  0.0  0.0  0.0  0.0  -1 
+#--------------------------------------------------
+SURFACE 
+left_elevon 
+!Nchordwise     Cspace      Nspanwise       Sspace 
+4       1.0        16     -2.0 
+ANGLE 
+0 
+TRANSLATE 
+0.0    0.0    0.0 
+SECTION 
+!Xle    Yle    Zle     Chord   Ainc  Nspanwise  Sspace 
+-0.1563   -0.5398    0.0    0.2477    0     8    -2.0 
+NACA 
+2412 
+CONTROL 
+aileron  1.0  0.0  0.0  0.0  0.0  -1 
+SECTION 
+!Xle    Yle    Zle     Chord   Ainc  Nspanwise  Sspace 
+0.0048   0.0    0.0    0.1823    0     8    -2.0 
+NACA 
+2412 
+CONTROL 
+aileron  1.0  0.0  0.0  0.0  0.0  -1 

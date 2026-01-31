@@ -13,15 +13,12 @@
           <diffuse>1 0 0 1</diffuse>
         </material>
       </visual>
+
+      <!-- quadtailsitter intertial -->
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <mass>1.6</mass>
         <inertia>
-          <!-- Rectangular cuboid:
-          Ixx = 1/12*(y^2+z^2)
-          Iyy = 1/12*(x^2+z^2)
-          Izz = 1/12*(x^2+y^2)
-          -->
           <ixx>0.1133333333</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
@@ -303,50 +300,168 @@
       </axis>
     </joint>
 
-    <plugin filename="gz-sim-advanced-lift-drag-system" name="gz::sim::systems::AdvancedLiftDrag">
-      <a0>0.0</a0>
-      <CL0>0.15188</CL0>
-      <AR>8.5</AR>
-      <eff>0.97</eff>
-      <CLa>5.015</CLa>
-      <cda>1.5</cda>
-      <CD0>0.15</CD0>
-      <Cem0>0.075</Cem0>
-      <Cema>-0.463966</Cema>
-      <CYb>-0.258244</CYb>
-      <Cellb>-0.039250</Cellb>
-      <Cenb>0.100826</Cenb>
-      <CDp>0.0</CDp>
-      <CYp>0.065861</CYp>
-      <CLp>0.0</CLp>
-      <Cellp>-0.487407</Cellp>
-      <Cemp>0.0</Cemp>
-      <Cenp>-0.040416</Cenp>
-      <CDq>0.055166</CDq>
-      <CYq>0.0</CYq>
-      <CLq>7.971792</CLq>
-      <Cellq>0.0</Cellq>
-      <Cemq>-12.140140</Cemq>
-      <Cenq>0.0</Cenq>
-      <CDr>0.0</CDr>
-      <CYr>0.230299</CYr>
-      <CLr>0.0</CLr>
-      <Cellr>0.078165</Cellr>
-      <Cemr>0.0</Cemr>
-      <Cenr>-0.089947</Cenr>
+
+    <link name="left_elevon">
+      <pose relative_to="base_link">0 0.267 -0.145 0 0 0</pose>
+      <inertial>
+        <mass>0.00000001</mass>
+        <inertia>
+          <ixx>0.000001</ixx>
+          <ixy>0.0</ixy>
+          <iyy>0.000001</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>0.000001</izz>
+        </inertia>
+        <pose>0 0.3 0 0.00 1.5707963268 0.0</pose>
+      </inertial>
+      <visual name='left_elevon_visual'>
+        <geometry>
+          <box>
+            <size>0.0005 0.5 0.03</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1.0</ambient>
+          <diffuse>0 0 1 1.0</diffuse>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo_0' type='revolute'>
+      <parent>base_link</parent>
+      <child>left_elevon</child>
+      <pose>0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.50</lower>
+          <upper>0.50</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+    <link name="right_elevon">
+      <pose relative_to="base_link">0 -0.267 -0.145 0 0 0</pose>
+      <inertial>
+        <mass>0.00000001</mass>
+        <inertia>
+          <ixx>0.000001</ixx>
+          <ixy>0.0</ixy>
+          <iyy>0.000001</iyy>
+          <ixz>0.0</ixz>
+          <iyz>0.0</iyz>
+          <izz>0.000001</izz>
+        </inertia>
+      </inertial>
+      <visual name='right_elevon_visual'>
+        <!-- <pose>0 0 0 1.5707963268 0 3.1415926536</pose> -->
+        <geometry>
+          <box>
+            <size>0.0005 0.5 0.03</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1.0</ambient>
+          <diffuse>0 0 1 1.0</diffuse>
+        </material>
+      </visual>
+    </link>
+    <joint name='servo_1' type='revolute'>
+      <parent>base_link</parent>
+      <child>right_elevon</child>
+      <!-- <pose>-0.18 -0.6 -0.005 0 0 -0.265</pose> -->
+       <pose>0 0 0 0 0 0</pose>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.50</lower>
+          <upper>0.50</upper>
+        </limit>
+        <dynamics>
+          <damping>1.000</damping>
+        </dynamics>
+      </axis>
+      <physics>
+        <ode>
+          <implicit_spring_damper>1</implicit_spring_damper>
+        </ode>
+      </physics>
+    </joint>
+
+<plugin filename="gz-sim-advanced-lift-drag-system" name="gz::sim::systems::AdvancedLiftDrag">
+      <a0>0.00000</a0>
+      <CL0>0.51384</CL0>
+      <AR>19.81837159863945</AR>
+      <eff>0.8369</eff>
+      <CLa>12.822112</CLa>
+      <CD0>0.00649</CD0>
+      <Cem0>-0.44974</Cem0>
+      <Cema>6.874834</Cema>
+      <CYb>-0.000577</CYb>
+      <Cellb>0.002166</Cellb>
+      <Cenb>-0.000750</Cenb>
+      <CDp>-0.001941</CDp>
+      <CYp>0.073495</CYp>
+      <CLp>0.152776</CLp>
+      <Cellp>-1.635502</Cellp>
+      <Cemp>-0.241925</Cemp>
+      <Cenp>-0.024756</Cenp>
+      <CDq>-0.109928</CDq>
+      <CYq>0.000144</CYq>
+      <CLq>-40.786980</CLq>
+      <Cellq>0.107888</Cellq>
+      <Cemq>-28.329279</Cemq>
+      <Cenq>-0.000603</Cenq>
+      <CDr>-0.000025</CDr>
+      <CYr>-0.001368</CYr>
+      <CLr>-0.012035</CLr>
+      <Cellr>0.145937</Cellr>
+      <Cemr>0.000108</Cemr>
+      <Cenr>-0.002341</Cenr>
       <alpha_stall>0.3391428111</alpha_stall>
       <CLa_stall>-3.85</CLa_stall>
       <CDa_stall>-0.9233984055</CDa_stall>
       <Cema_stall>0</Cema_stall>
-      <ref_pt>-0.12 0.0 0.0</ref_pt>
-      <area>0.4</area>
-      <mac>0.22</mac>
+      <cp>0.0048 0.0 0.0</cp>
+      <area>0.0588</area>
+      <mac>0.03631310792033349</mac>
       <air_density>1.2041</air_density>
-      <forward>0 0 1</forward>
-      <upward>-1 0 0</upward>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
       <link_name>base_link</link_name>
-      <num_ctrl_surfaces>0</num_ctrl_surfaces>
-    </plugin>
+      <num_ctrl_surfaces>2</num_ctrl_surfaces>
+      <control_surface>
+        <name>servo_0</name>
+        <index>0</index>
+        <direction>1</direction>
+        <CD_ctrl>0.003620</CD_ctrl>
+        <CY_ctrl>-0.000005</CY_ctrl>
+        <CL_ctrl>-0.214550</CL_ctrl>
+        <Cell_ctrl>0.001225</Cell_ctrl>
+        <Cem_ctrl>0.114977</Cem_ctrl>
+        <Cen_ctrl>0.000018</Cen_ctrl>
+    </control_surface>
+    <control_surface>
+        <name>servo_1</name>
+        <index>1</index>
+        <direction>1</direction>
+        <CD_ctrl>0.003620</CD_ctrl>
+        <CY_ctrl>-0.000005</CY_ctrl>
+        <CL_ctrl>-0.214550</CL_ctrl>
+        <Cell_ctrl>-0.001225</Cell_ctrl>
+        <Cem_ctrl>0.114977</Cem_ctrl>
+        <Cen_ctrl>-1.8e-05</Cen_ctrl>
+    </control_surface>
+</plugin>
+
 
     <plugin filename="gz-sim-multicopter-motor-model-system" name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_0_joint</jointName>
@@ -354,7 +469,7 @@
       <turningDirection>cw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>1200</maxRotVelocity>
+      <maxRotVelocity>2000</maxRotVelocity>
       <motorConstant>8.54858e-06</motorConstant>
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
@@ -371,7 +486,7 @@
       <turningDirection>ccw</turningDirection>
       <timeConstantUp>0.0125</timeConstantUp>
       <timeConstantDown>0.025</timeConstantDown>
-      <maxRotVelocity>1200</maxRotVelocity>
+      <maxRotVelocity>2000</maxRotVelocity>
       <motorConstant>8.54858e-06</motorConstant>
       <momentConstant>0.06</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
@@ -380,6 +495,56 @@
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
       <rotorVelocitySlowdownSim>5</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
+    </plugin>
+<!--
+    <plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0.05984281113</a0>
+      <cla>4.752798721</cla>
+      <cda>0.6417112299</cda>
+      <cma>0.0</cma>
+      <alpha_stall>0.3391428111</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.05 0.3 0.05</cp>
+      <area>0.50</area>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>servo_0</control_joint_name>
+      <control_joint_rad_to_cl>-1.0</control_joint_rad_to_cl>
+    </plugin> -->
+
+    <plugin
+      filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>servo_0</joint_name>
+      <sub_topic>servo_0</sub_topic>
+    </plugin>
+<!--
+    <plugin filename="gz-sim-lift-drag-system" name="gz::sim::systems::LiftDrag">
+      <a0>0.05984281113</a0>
+      <cla>4.752798721</cla>
+      <cda>0.6417112299</cda>
+      <cma>0.0</cma>
+      <alpha_stall>0.3391428111</alpha_stall>
+      <cla_stall>-3.85</cla_stall>
+      <cda_stall>-0.9233984055</cda_stall>
+      <cma_stall>0</cma_stall>
+      <cp>-0.05 -0.3 0.05</cp>
+      <area>0.50</area>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <control_joint_name>servo_1</control_joint_name>
+      <control_joint_rad_to_cl>-1.0</control_joint_rad_to_cl>
+    </plugin> -->
+
+    <plugin
+      filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>servo_1</joint_name>
+      <sub_topic>servo_1</sub_topic>
     </plugin>
 
     <static>0</static>

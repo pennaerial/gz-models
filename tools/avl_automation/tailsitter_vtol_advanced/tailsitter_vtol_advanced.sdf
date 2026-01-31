@@ -1,0 +1,65 @@
+<plugin filename="gz-sim-advanced-lift-drag-system" name="gz::sim::systems::AdvancedLiftDrag">
+      <a0>0.00000</a0>
+      <CL0>0.51384</CL0>
+      <AR>19.81837159863945</AR>
+      <eff>0.8369</eff>
+      <CLa>12.822112</CLa>
+      <CD0>0.00649</CD0>
+      <Cem0>-0.44974</Cem0>
+      <Cema>6.874834</Cema>
+      <CYb>-0.000577</CYb>
+      <Cellb>0.002166</Cellb>
+      <Cenb>-0.000750</Cenb>
+      <CDp>-0.001941</CDp>
+      <CYp>0.073495</CYp>
+      <CLp>0.152776</CLp>
+      <Cellp>-1.635502</Cellp>
+      <Cemp>-0.241925</Cemp>
+      <Cenp>-0.024756</Cenp>
+      <CDq>-0.109928</CDq>
+      <CYq>0.000144</CYq>
+      <CLq>-40.786980</CLq>
+      <Cellq>0.107888</Cellq>
+      <Cemq>-28.329279</Cemq>
+      <Cenq>-0.000603</Cenq>
+      <CDr>-0.000025</CDr>
+      <CYr>-0.001368</CYr>
+      <CLr>-0.012035</CLr>
+      <Cellr>0.145937</Cellr>
+      <Cemr>0.000108</Cemr>
+      <Cenr>-0.002341</Cenr>
+      <alpha_stall>0.3391428111</alpha_stall>
+      <CLa_stall>-3.85</CLa_stall>
+      <CDa_stall>-0.9233984055</CDa_stall>
+      <Cema_stall>0</Cema_stall>
+      <cp>0.0048 0.0 0.0</cp>
+      <area>0.0588</area>
+      <mac>0.03631310792033349</mac>
+      <air_density>1.2041</air_density>
+      <forward>1 0 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>base_link</link_name>
+      <num_ctrl_surfaces>2</num_ctrl_surfaces>
+      <control_surface>
+        <name>servo_0</name>
+        <index>0</index>
+        <direction>1</direction>
+        <CD_ctrl>0.003620</CD_ctrl>
+        <CY_ctrl>-0.000005</CY_ctrl>
+        <CL_ctrl>-0.214550</CL_ctrl>
+        <Cell_ctrl>0.001225</Cell_ctrl>
+        <Cem_ctrl>0.114977</Cem_ctrl>
+        <Cen_ctrl>0.000018</Cen_ctrl>
+    </control_surface>
+    <control_surface>
+        <name>servo_1</name>
+        <index>1</index>
+        <direction>1</direction>
+        <CD_ctrl>0.003620</CD_ctrl>
+        <CY_ctrl>-0.000005</CY_ctrl>
+        <CL_ctrl>-0.214550</CL_ctrl>
+        <Cell_ctrl>-0.001225</Cell_ctrl>
+        <Cem_ctrl>0.114977</Cem_ctrl>
+        <Cen_ctrl>-1.8e-05</Cen_ctrl>
+    </control_surface>
+</plugin>

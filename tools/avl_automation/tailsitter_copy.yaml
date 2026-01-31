@@ -1,0 +1,23 @@
+# AVL Configuration for Tailsitter VTOL - Advanced Shape
+# Generated from STL analysis: advancedshape-vertical.stl
+
+# Enter a name for your vehicle
+vehicle_name: tailsitter_copy
+
+# Enter the type of airframe you would like to use:
+frame_type: standard_vtol
+
+# Model-wide parameters (extracted from STL geometry)
+reference_area: 0.0588      # Wing reference area in m² (integrated from geometry)
+wing_span: 1.0795           # Total wingspan tip-to-tip in m
+mac: 0.2166                 # Mean Aerodynamic Chord in m
+
+# Provide a reference point at which the forces and moments generated will act.
+# This is typically at the center of gravity or aerodynamic center
+reference_point:
+  X: 0.0048    # Based on root chord leading edge position
+  Y: 0.0
+  Z: 0.0
+
+# Provide information on each of the Control Surfaces
+num_ctrl_surfaces: 0

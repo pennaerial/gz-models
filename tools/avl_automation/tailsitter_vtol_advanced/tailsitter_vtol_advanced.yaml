@@ -1,0 +1,104 @@
+# AVL Configuration for Tailsitter VTOL - Advanced Shape
+# Generated from STL analysis: advancedshape-vertical.stl
+
+# Enter a name for your vehicle
+vehicle_name: tailsitter_vtol_advanced
+
+# Enter the type of airframe you would like to use:
+frame_type: custom
+
+# Model-wide parameters (extracted from STL geometry)
+reference_area: 0.0588      # Wing reference area in m² (integrated from geometry)
+wing_span: 1.0795           # Total wingspan tip-to-tip in m
+mac: 0.2166                 # Mean Aerodynamic Chord in m
+
+# Provide a reference point at which the forces and moments generated will act.
+# This is typically at the center of gravity or aerodynamic center
+reference_point:
+  X: 0.0048    # Based on root chord leading edge position
+  Y: 0.0
+  Z: 0.0
+
+# Provide information on each of the Control Surfaces
+num_ctrl_surfaces: 2
+
+control_surfaces:
+  # RIGHT ELEVON (Positive Y side)
+  - name: right_elevon
+    type: aileron
+    nchord: 4           # Number of chordwise panels (increased for better resolution)
+    cspace: 1.0         # Chordwise spacing (1.0 = uniform)
+    nspan: 16           # Number of spanwise panels
+    sspace: -2.0        # Spanwise spacing (-2 = cosine clustering at tips)
+    angle: 0            # Initial deflection angle (degrees)
+    translation:
+      X: 0.0
+      Y: 0.0
+      Z: 0.0
+    naca: 2412         # NACA 2412 airfoil
+
+    sections:
+    - name: root_section
+      position:
+        X: 0.0048       # Leading edge at root
+        Y: 0.0          # Centerline
+        Z: 0.0
+      chord: 0.1823     # Root chord (m)
+      ainc: 0           # Angle of incidence (degrees)
+      nspan: 8          # Panels from root to midspan
+      sspace: 1.0
+
+    - name: tip_section
+      position:
+        X: -0.1563      # Leading edge at tip (swept back)
+        Y: 0.5398       # Half wingspan (right side)
+        Z: 0.0
+      chord: 0.2477     # Tip chord (m)
+      ainc: 0           # Angle of incidence (degrees)
+      nspan: 8          # Panels from midspan to tip
+      sspace: -2.0      # Cosine clustering at tip
+
+  # LEFT ELEVON (Negative Y side - mirror of right)
+  - name: left_elevon
+    type: aileron
+    nchord: 4
+    cspace: 1.0
+    nspan: 16
+    sspace: -2.0
+    angle: 0
+    translation:
+      X: 0.0
+      Y: 0.0
+      Z: 0.0
+    naca: 2412
+
+    sections:
+    - name: tip_section
+      position:
+        X: -0.1563      # Leading edge at tip (swept back)
+        Y: -0.5398      # Half wingspan (left side, negative Y)
+        Z: 0.0
+      chord: 0.2477     # Tip chord (m)
+      ainc: 0
+      nspan: 8
+      sspace: -2.0      # Cosine clustering at tip
+
+    - name: root_section
+      position:
+        X: 0.0048       # Leading edge at root
+        Y: 0.0          # Centerline
+        Z: 0.0
+      chord: 0.1823     # Root chord (m)
+      ainc: 0
+      nspan: 8
+      sspace: 1.0
+
+# NOTES:
+# ------
+# 1. This configuration is based on direct STL geometry analysis
+# 2. The wing has an inverse taper (tip chord > root chord): taper ratio = 1.358
+# 3. The wing has a sweep angle (tips are aft of root)
+# 4. Aspect ratio is high (19.82) suggesting efficient cruise performance
+# 5. Reference area is relatively small (0.0588 m²) - verify this matches your design intent
+# 6. If the reference area seems too small, check if your STL includes only the aerodynamic
+#    surface or if there are other components that should be excluded
