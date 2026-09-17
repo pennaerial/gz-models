@@ -47,19 +47,17 @@ jobs:
 
             - name: Iterate, find and check .sdf files
               run: |
-                changed_files=$(git diff --name-only ${{ steps.second_to_last_commit.outputs.hash }} ${{ steps.latest_commit.outputs.hash }})
+                failed=0
+                # --diff-filter=d: skip deleted paths (there is nothing to parse)
+                changed_files=$(git diff --name-only --diff-filter=d ${{ steps.second_to_last_commit.outputs.hash }} ${{ steps.latest_commit.outputs.hash }})
                 for file in $changed_files; do
-                  if [[ $file == *.sdf ]]; then
-                    echo "Checking $file"
+                  [[ $file == *.sdf ]] || continue
+                  echo "Checking $file"
 
-                    # Run sdf parser
-                    ./sdf_parsing/build/check_sdf $file
-                    exit_code=$?
-
-                    # Exit if exit code not equal 0
-                    if [ $exit_code -ne 0 ]; then
-                        echo "sdf parsing error in $file, exit code: $exit_code"
-                    fi
-
+                  # `if !` keeps going under `bash -e` so every file is reported
+                  if ! ./sdf_parsing/build/check_sdf "$file"; then
+                    echo "::error file=$file::sdf parsing error in $file"
+                    failed=1
                   fi
                 done
+                exit $failed
